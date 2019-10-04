@@ -1,0 +1,3 @@
+docker build -t php-apache-build-2 ./
+docker run -d -v /home/user/site:/var/www/html -v /home/user/web/config:/etc/apache2/sites-available -p 80:80 --name edu php-apache
+ 
