@@ -1,3 +1,9 @@
-docker build -t php-apache-build-2 ./
-docker run -d -v /home/user/site:/var/www/html -v /home/user/web/config:/etc/apache2/sites-available -p 80:80 --name edu php-apache
+docker build -t php-apache ./
+docker run -d -v /home/user/web:/var/www/html -v /home/user/web/config:/etc/apache2/sites-available -p 443:443 --name edu php-apache
  
+внутри контейнера a2dissite 000-default.conf
+a2ensite ssl.conf
+a2enmod ssl
+service apache2 reload
+
+создание сертификата(на всякий) openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /home/user/web/config/apache.key -out /home/user/web/config/apache.crt
